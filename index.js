@@ -1,4 +1,4 @@
-export function setClassNames({ Order_Status__c }) {
+function setClassNames({ Order_Status__c }) {
     const salesForceStatus = document.getElementById("Title-BG");
     if (Order_Status__c == "Complete") {
       salesForceStatus.classList.remove("service-status-default");
