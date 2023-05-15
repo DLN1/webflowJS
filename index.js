@@ -60,3 +60,43 @@ function formatMomentDate(dateObject) {
 function padValue(value) {
   return value < 10 ? "0" + value : value;
 }
+
+function formatCurrency(value) {
+    var num =
+      "$" + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    console.log(num);
+    return num;
+  }
+  function formatURL(spanID, url) {
+    var spans = document.querySelectorAll("span#" + spanID);
+    for (var i = spans.length; i--; ) {
+      var a = document.createElement("a");
+      a.href = url;
+      spans[i].appendChild(a).appendChild(a.previousSibling);
+    }
+  }
+
+  function showMessage(messageText) {
+    const messageContainer = document.querySelector("#payment-message");
+    messageContainer.classList.remove("hidden");
+    messageContainer.textContent = messageText;
+    setTimeout(function () {
+      messageContainer.classList.add("hidden");
+      messageText.textContent = "";
+    }, 4000);
+  }
+  function setLoading(isLoading) {
+    console.log("isloading", isLoading);
+    if (isLoading) {
+      document.querySelector("#submit").disabled = true;
+      document.querySelector("#spinner").classList.remove("hidden");
+      document.querySelector("#button-text").innerText =
+        "Processing! Please wait ...";
+    } else {
+      document.querySelector("#submit").disabled = false;
+      document.querySelector("#spinner").classList.add("hidden");
+      document.querySelector("#button-text").classList.remove("hidden");
+      document.querySelector("#button-text").innerText =
+        "Pay and Confirm Service";
+    }
+  }
